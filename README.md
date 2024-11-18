@@ -8,7 +8,7 @@ Clone este repositório para o seu ambiente local:
 
 bash
 Copiar código
-git clone https://github.com/seu-usuario/repo.git
+git clone https://github.com/KevenFirmo/repo.git
 cd repo
 2. Construir a Imagem Docker
 Execute o comando abaixo para construir a imagem Docker a partir do Dockerfile:
