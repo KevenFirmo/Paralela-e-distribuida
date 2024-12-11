@@ -1,0 +1,23 @@
+{
+    "graph_metrics": {
+        "average_clustering_coefficient": 0.20885170281860763,
+        "diameter": 7,
+        "edges": 103689,
+        "effective_diameter_90_percentile": 4.0,
+        "fraction_of_closed_triangles": 0.12547914899233995,
+        "largest_scc": {
+            "edges": 39466,
+            "fraction_of_total_edges": 0.3806189663320121,
+            "fraction_of_total_nodes": 0.18313422347153901,
+            "nodes": 1303
+        },
+        "largest_wcc": {
+            "edges": 103663,
+            "fraction_of_total_edges": 0.9997492501615408,
+            "fraction_of_total_nodes": 0.9931131412508785,
+            "nodes": 7066
+        },
+        "nodes": 7115,
+        "triangles": 608389
+    }
+}

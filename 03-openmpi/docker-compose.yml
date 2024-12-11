@@ -1,0 +1,48 @@
+version: "3"
+services:
+  node1:
+    build: .
+    container_name: node1
+    hostname: node1
+    volumes:
+      - ./data:/app/data
+    networks:
+      mpi_net:
+        ipv4_address: 172.28.0.11
+
+  node2:
+    build: .
+    container_name: node2
+    hostname: node2
+    volumes:
+      - ./data:/app/data
+    networks:
+      mpi_net:
+        ipv4_address: 172.28.0.12
+
+  node3:
+    build: .
+    container_name: node3
+    hostname: node3
+    volumes:
+      - ./data:/app/data
+    networks:
+      mpi_net:
+        ipv4_address: 172.28.0.13
+
+  node4:
+    build: .
+    container_name: node4
+    hostname: node4
+    volumes:
+      - ./data:/app/data
+    networks:
+      mpi_net:
+        ipv4_address: 172.28.0.14
+
+networks:
+  mpi_net:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.28.0.0/16

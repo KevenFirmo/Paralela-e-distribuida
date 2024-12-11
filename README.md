@@ -1,32 +1,77 @@
-A aplicação realiza O código apresentado é um programa escrito em C++ que analisa um grafo representado por um arquivo de texto (web-Google.txt) e realiza várias operações sobre ele, utilizando múltiplas threads para otimizar o processamento. O código foi desenvolvido utilizando o padrão C++11 e as bibliotecas pthread para multithreading e nlohmann::json para manipulação de JSON.
+# Entrega CPD 2024
 
-Pré-requisitos
-Docker: A aplicação está configurada para ser executada dentro de um container Docker. Certifique-se de ter o Docker instalado em seu sistema. Caso não tenha o Docker, siga a documentação oficial do Docker para instalá-lo.
-Como Rodar a Aplicação
-1. Clonar o Repositório
-Clone este repositório para o seu ambiente local:
+## Estrutura do Projeto
+entrega_cpd_2024/\
+    ├── 01-pthreads/\
+    ├── 02-openmp/\
+    ├── 03-openmpi/\
+    └── README.md
 
-bash
-Copiar código
-git clone https://github.com/KevenFirmo/repo.git
-cd repo
-2. Construir a Imagem Docker
-Execute o comando abaixo para construir a imagem Docker a partir do Dockerfile:
+## Como Utilizar
 
-bash
-Copiar código
-docker build -t cpp-app .
-3. Rodar a Aplicação
-Após a construção da imagem, você pode rodar a aplicação no Docker:
+### Pré-requisitos
 
-bash
-Copiar código
-docker run --rm cpp-app
-O parâmetro --rm garante que o container será removido automaticamente após a execução.
+- **Docker** instalado na sua máquina. [Instalar Docker](https://docs.docker.com/get-docker/)
+- **Docker Compose** (opcional, se necessário para orquestração).
 
-4. (Opcional) Rodar com Argumentos
-Se você precisar passar argumentos para a aplicação, você pode adicionar os parâmetros após o nome da imagem Docker. Exemplo:
+### 01 - pthreads
 
-bash
-Copiar código
-docker run --rm cpp-app argumento1 argumento2
+Implementação utilizando **PThreads**.
+
+#### Construir a Imagem Docker
+
+```bash
+cd 01 - pthreads
+docker build -t pthreads_app .
+
+docker run --rm -v $(pwd):/app/data pthreads_app
+
+cat graph_metrics.json  
+```
+### 02 - openmp
+Implementação utilizando **openMp**.
+
+
+```bash
+cd 02 - openmp
+docker build -t openmp_app .
+
+docker run --rm -v $(pwd):/app/data openmp_app
+
+cat graph_metrics.json  
+```
+
+### 03 - openmpi
+Implementação utilizando **openMpi**.
+
+```bash
+cd 03 - openmpi
+
+docker-compose build
+
+docker-compose up -d
+```
+Isso levantará 4 contêineres: node1, node2, node3 e node4.
+
+Verifique se os contêineres estão ativos:
+```bash
+docker ps
+```
+Entre no contêiner node1 como mpiuser:
+
+```bash
+docker exec -it --user=mpiuser node1
+```
+Execute o aplicativo distribuído:
+
+```bash
+mpirun -np 4 -H node1,node2,node3,node4 ./openmpi_app /app/data input_graph.txt
+```
+Ao final, verifique o resultado.
+```bash
+cat /app/data/graph_metrics.json
+```
+Ou então, caso deseje ver no host, saia do bash do container e do container, e execute:
+```bash
+cat data/graph_metrics.json
+```
